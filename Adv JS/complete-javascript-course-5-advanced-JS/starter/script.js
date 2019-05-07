@@ -423,9 +423,10 @@
 // console.log(adultsJapan);
 
 // question game
-
 var randomQuestion = Math.round(Math.random() * 2);
+var score = 0;
 
+// function constructor
 function question(q, answers, correctAnswer) {
   this.q = q;
   this.answers = answers;
@@ -443,19 +444,27 @@ var questions = [
 ];
 
 (function askQuestion() {
+  console.log(`your score: ${score}`);
+
   console.log(`${questions[randomQuestion].q}`);
   for (let i = 0; i <= 2; i++) {
     console.log(`${i}) ${questions[randomQuestion].answers[i]}`);
   }
-  // console.log(questions[randomQuestion].correctAnswer);
 
-  var a = prompt("enter your answer");
-  if (a == questions[randomQuestion].correctAnswer) {
+  var userAnswer = prompt("enter your answer");
+  if (userAnswer == questions[randomQuestion].correctAnswer) {
     2;
     console.log("correct answer...");
+    score += 1;
+  } else if (userAnswer == null || userAnswer == "x") {
+    console.log(`YOUR FINAL SCORE: ${score}`);
+
+    return;
   } else {
     console.log("wrong answer, try again...");
   }
-})();
+  console.log("************************************");
 
-// console.log(randomQuestion);
+  randomQuestion = Math.round(Math.random() * 1);
+  askQuestion();
+})();
