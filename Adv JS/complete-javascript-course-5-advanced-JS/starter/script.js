@@ -354,70 +354,108 @@
 // var designQ = interviewQuestions("designer");
 // designQ("Owen")();
 
-// doit with out inner functions
-var john = {
-  name: "John",
-  age: 26,
-  job: "Teacher",
-  presentation: function(style, timeOfDay) {
-    if (style === "formal") {
-      console.log(
-        `good morning ladies and gents my name is ${this.name}, I'm a ${
-          this.job
-        } I'm ${this.age} years old`
-      );
-    } else if (style === "friendly") {
-      console.log(
-        `Whats up what's up my name is ${this.name}, I'm a ${this.job} I'm ${
-          this.age
-        } years old`
-      );
-    }
+// // doit with out inner functions
+// var john = {
+//   name: "John",
+//   age: 26,
+//   job: "Teacher",
+//   presentation: function(style, timeOfDay) {
+//     if (style === "formal") {
+//       console.log(
+//         `good morning ladies and gents my name is ${this.name}, I'm a ${
+//           this.job
+//         } I'm ${this.age} years old`
+//       );
+//     } else if (style === "friendly") {
+//       console.log(
+//         `Whats up what's up my name is ${this.name}, I'm a ${this.job} I'm ${
+//           this.age
+//         } years old`
+//       );
+//     }
+//   }
+// };
+
+// var emily = {
+//   name: "emily",
+//   age: 35,
+//   job: "designer"
+// };
+
+// // john.presentation("friendly", "morning");
+
+// // john.presentation.call(emily, "friendly");
+
+// // john.presentation.apply(emily, ["friendly", "afternoon"]) // no work in this example
+
+// // Bind
+// var emilyFriendly = john.presentation.bind(emily, "friendly", "afternoon");
+// // emilyFriendly();
+
+// var years = [1999, 2009, 2002, 2001, 1998, 1987, 1978];
+
+// function arrayCalc(arr, fn) {
+//   arrRes = [];
+//   for (let i = 0; i < arr.length; i++) {
+//     arrRes.push(fn(arr[i]));
+//   }
+//   return arrRes;
+// }
+
+// function calcAge(year) {
+//   return 2019 - year;
+// }
+
+// function isFullAge(limit, age) {
+//   console.log(`age: ${age}   limit:${limit}`);
+
+//   return age > limit;
+// }
+
+// var ages = arrayCalc(years, calcAge);
+// // var adults = arrayCalc(ages, isFullAge)
+
+// var adultsJapan = arrayCalc(ages, isFullAge.bind(this, 20));
+
+// // var adultAus = arrayCalc(ages, isFullAge.bind(this, 18));
+
+// console.log(ages);
+// console.log(adultsJapan);
+
+// question game
+
+var randomQuestion = Math.round(Math.random() * 2);
+
+function question(q, answers, correctAnswer) {
+  this.q = q;
+  this.answers = answers;
+  this.correctAnswer = correctAnswer;
+}
+
+var questions = [
+  new question(
+    "what is the best programming language",
+    ["Javascript", "Python", "C#"],
+    0
+  ),
+  new question("How many fingers am i holding up?", ["1", "2", "3"], 2),
+  new question("are dogs awesome?", ["YES", "NO", "Not Sure..."], 0)
+];
+
+(function askQuestion() {
+  console.log(`${questions[randomQuestion].q}`);
+  for (let i = 0; i <= 2; i++) {
+    console.log(`${i}) ${questions[randomQuestion].answers[i]}`);
   }
-};
+  // console.log(questions[randomQuestion].correctAnswer);
 
-var emily = {
-  name: "emily",
-  age: 35,
-  job: "designer"
-};
-
-// john.presentation("friendly", "morning");
-
-// john.presentation.call(emily, "friendly");
-
-// john.presentation.apply(emily, ["friendly", "afternoon"]) // no work in this example
-
-// Bind
-var emilyFriendly = john.presentation.bind(emily, "friendly", "afternoon");
-// emilyFriendly();
-
-var years = [1999, 2009, 2002, 2001, 1998, 1987, 1978];
-
-function arrayCalc(arr, fn) {
-  arrRes = [];
-  for (let i = 0; i < arr.length; i++) {
-    arrRes.push(fn(arr[i]));
+  var a = prompt("enter your answer");
+  if (a == questions[randomQuestion].correctAnswer) {
+    2;
+    console.log("correct answer...");
+  } else {
+    console.log("wrong answer, try again...");
   }
-  return arrRes;
-}
+})();
 
-function calcAge(year) {
-  return 2019 - year;
-}
-
-function isFullAge(limit, age) {
-  console.log(`age: ${age}   limit:${limit}`);
-
-  return age > limit;
-}
-
-var ages = arrayCalc(years, calcAge);
-// var adults = arrayCalc(ages, isFullAge)
-
-var adultsJapan = arrayCalc(ages, isFullAge.bind(this, 20));
-
-// var adultAus = arrayCalc(ages, isFullAge.bind(this, 18));
-
-console.log(ages);
-console.log(adultsJapan);
+// console.log(randomQuestion);
