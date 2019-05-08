@@ -422,49 +422,102 @@
 // console.log(ages);
 // console.log(adultsJapan);
 
-// question game
-var randomQuestion = Math.round(Math.random() * 2);
-var score = 0;
+// question game - My CODE
+/////////////////////////////////////////////////////////////////////////////////////
+// var randomQuestion = Math.round(Math.random() * 2);
+// var score = 0;
 
-// function constructor
-function question(q, answers, correctAnswer) {
-  this.q = q;
-  this.answers = answers;
-  this.correctAnswer = correctAnswer;
-}
+// // function constructor
+// function question(q, answers, correctAnswer) {
+//   this.q = q;
+//   this.answers = answers;
+//   this.correctAnswer = correctAnswer;
+// }
 
-var questions = [
-  new question(
-    "what is the best programming language",
-    ["Javascript", "Python", "C#"],
+// var questions = [
+//   new question(
+//     "what is the best programming language",
+//     ["Javascript", "Python", "C#"],
+//     0
+//   ),
+//   new question("How many fingers am i holding up?", ["1", "2", "3"], 2),
+//   new question("are dogs awesome?", ["YES", "NO", "Not Sure..."], 0)
+// ];
+
+// (function askQuestion() {
+//   console.log(`your score: ${score}`);
+
+//   console.log(`${questions[randomQuestion].q}`);
+//   for (let i = 0; i <= 2; i++) {
+//     console.log(`${i}) ${questions[randomQuestion].answers[i]}`);
+//   }
+
+//   var userAnswer = prompt("enter your answer");
+//   if (userAnswer == questions[randomQuestion].correctAnswer) {
+//     2;
+//     console.log("correct answer...");
+//     score += 1;
+//   } else if (userAnswer == null || userAnswer == "x") {
+//     console.log(`YOUR FINAL SCORE: ${score}`);
+
+//     return;
+//   } else {
+//     console.log("wrong answer, try again...");
+//   }
+//   console.log("************************************");
+
+//   randomQuestion = Math.round(Math.random() * 1);
+//   askQuestion();
+// })();
+/////////////////////////////////////////////////////////////////
+
+(function() {
+  function Question(question, answers, correct) {
+    this.question = question;
+    this.answers = answers;
+    this.correct = correct;
+  }
+
+  Question.prototype.checkAnswer = function(ans) {
+    if (ans === this.correct) {
+      console.log("correct answer.");
+    } else {
+      console.log("try again...");
+    }
+  };
+
+  Question.prototype.displayQuestion = function() {
+    console.log(this.question);
+
+    for (var i = 0; i < this.answers.length; i++) {
+      console.log(`${i}) ${this.answers[i]}`);
+    }
+  };
+  var q1 = new Question(
+    "Is JS the coolest programming language?",
+    ["Yes", "No"],
     0
-  ),
-  new question("How many fingers am i holding up?", ["1", "2", "3"], 2),
-  new question("are dogs awesome?", ["YES", "NO", "Not Sure..."], 0)
-];
+  );
 
-(function askQuestion() {
-  console.log(`your score: ${score}`);
+  var q2 = new Question(
+    "Whats the name of the instructor",
+    ["john", "michael", "jonas"],
+    2
+  );
 
-  console.log(`${questions[randomQuestion].q}`);
-  for (let i = 0; i <= 2; i++) {
-    console.log(`${i}) ${questions[randomQuestion].answers[i]}`);
-  }
+  var q3 = new Question(
+    "What best describes coding",
+    ["Hard", "Boring", "Tedius", "Fun"],
+    3
+  );
 
-  var userAnswer = prompt("enter your answer");
-  if (userAnswer == questions[randomQuestion].correctAnswer) {
-    2;
-    console.log("correct answer...");
-    score += 1;
-  } else if (userAnswer == null || userAnswer == "x") {
-    console.log(`YOUR FINAL SCORE: ${score}`);
+  var questions = [q1, q2, q3];
 
-    return;
-  } else {
-    console.log("wrong answer, try again...");
-  }
-  console.log("************************************");
+  var n = Math.floor(Math.random() * questions.length);
 
-  randomQuestion = Math.round(Math.random() * 1);
-  askQuestion();
+  questions[n].displayQuestion();
+
+  var answer = parseInt(prompt("plesae select the correct answer..."));
+
+  questions[n].checkAnswer(answer);
 })();
