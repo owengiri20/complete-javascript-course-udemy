@@ -1,0 +1,10 @@
+learn
+- what is a dependency
+- what is a dev dependency
+
+NOTES
+- Installing babel was a 3 step process
+	- Install packages and add rules with babel loader
+	- created config file, specify wich files to convert to 	  ES5
+	- included polyfill to polyfill the features we connot 	  convert with the babel loaders
+* POLLY FILL - some parts of es678 cannot be converted to old js so we  polly fill
