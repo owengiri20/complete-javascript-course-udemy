@@ -20,8 +20,10 @@ const state = {};
 /*SEARCH CONTROLLER */
 const controlSearch = async () => {
   // 1) Get query from view
-  const query = searchView.getInput(); //TODO
-  console.log(query);
+  // const query = searchView.getInput(); //TODO
+  const query = "pizza"; //TODO
+
+  // console.log(query);
 
   if (query) {
     // 2) New Search object and add its state
@@ -42,13 +44,19 @@ const controlSearch = async () => {
       searchView.renderResults(state.search.result);
     } catch (e) {
       console.log(e);
-      alert("somthing went wrong");
+      alert("somthing went wrong with search");
       clearLoader();
     }
   }
 };
 
 elements.searchForm.addEventListener("submit", e => {
+  e.preventDefault();
+  controlSearch();
+});
+
+// testing
+window.addEventListener("load", e => {
   e.preventDefault();
   controlSearch();
 });
@@ -67,16 +75,20 @@ const controlRecipe = async () => {
   // Get the ID from url
   const id = window.location.hash.replace("#", "");
   console.log(id);
-
   if (id) {
     // prepare UI for changes
 
     // Create a new recipe object
     state.recipe = new Recipe(id);
 
-    // Get recipe data
+    // TESTING
+    window.r = state.recipe;
+
     try {
+      // Get recipe data
       await state.recipe.getRecipe();
+
+      // Calc servings and time
       state.recipe.calcTime();
       state.recipe.calcServings();
 
@@ -86,7 +98,6 @@ const controlRecipe = async () => {
       alert("something went wrong ):");
       console.log(e);
     }
-    // Calc servings and time
   }
 };
-[("haschange", "load")].forEach(e => window.addEventListener(e, controlRecipe));
+["hashchange", "load"].forEach(e => window.addEventListener(e, controlRecipe));
