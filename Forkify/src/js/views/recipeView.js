@@ -8,7 +8,7 @@ const createIngredient = ingredient => `
         <div class="recipe__count">${ingredient.count}</div>
         <div class="recipe__ingredient">
             <span class="recipe__unit">${ingredient.unit}</span>
-            ${ingredient}
+            ${ingredient.ingredient}
         </div>
     </li>
 
