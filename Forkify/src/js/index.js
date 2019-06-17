@@ -73,7 +73,7 @@ const controlRecipe = async () => {
   console.log(id);
   if (id) {
     // prepare UI for changes
-
+    renderLoader(elements.recipe);
     // Create a new recipe object
     state.recipe = new Recipe(id);
 
@@ -86,7 +86,9 @@ const controlRecipe = async () => {
       state.recipe.calcServings();
 
       // render recipe
-      console.log(state.recipe);
+      // console.log(state.recipe);
+      clearLoader();
+      recipeView.renderRecipe(state.recipe);
     } catch (e) {
       alert("something went wrong ):");
       console.log(e);
