@@ -21,6 +21,8 @@ import { elements, renderLoader, clearLoader } from "./views/base";
 */
 const state = {};
 
+window.state = state;
+
 /*SEARCH CONTROLLER */
 const controlSearch = async () => {
   // 1) Get query from view
@@ -113,11 +115,27 @@ const controlList = () => {
   // create a new lis if there is none yet
   if (!state.list) state.list = new List();
 
-  // add each ingredient to the list
+  // add each ingredient to the list and ui
   state.recipe.ingredients.forEach(el => {
     const item = state.list.addItem(el.count, el.unit, el.ingredient);
+    listView.renderItem(item);
   });
 };
+
+// Handle delete list item events
+elements.shopping.addEventListener("click", e => {
+  const id = e.target.closest(".shopping__item").dataset.itemid;
+
+  // Handle delete button
+  if (e.target.matches(".shopping__delete, .shopping__delete *")) {
+    // delete from state
+    state.list.deleteItem(id);
+
+    // delete from ui
+    listView.deleteItem(id);
+    console.log(e.target);
+  }
+});
 
 // Handling recipe button clicks
 elements.recipe.addEventListener("click", e => {
