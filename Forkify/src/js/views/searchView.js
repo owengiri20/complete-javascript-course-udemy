@@ -27,6 +27,16 @@ export const clearResults = () => {
   elements.searchResultList.innerHTML = "";
   elements.searchResPages.innerHTML = "";
 };
+
+export const highlightedSelected = id => {
+  const resultsArr = Array.from(document.querySelectorAll(".results__link"));
+  resultsArr.forEach(el => el.classList.remove("results__link--active"));
+
+  document
+    .querySelector(`a[href="#${id}"]`)
+    .classList.add("results__link--active");
+};
+
 const renderRecipe = recipe => {
   const markup = `
     <li>
