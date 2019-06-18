@@ -107,8 +107,6 @@ const controlRecipe = async () => {
 // Handling recipe button clicks
 elements.recipe.addEventListener("click", e => {
   if (e.target.matches(".btn-decrease, .btn-decrease *")) {
-    console.log("decreaese");
-
     // Decreases button is clicked
     if (state.recipe.servings > 1) {
       state.recipe.updateServings("dec");

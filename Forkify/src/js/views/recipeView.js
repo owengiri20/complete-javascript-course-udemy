@@ -5,19 +5,20 @@ export const clearRecipe = () => (elements.recipe.innerHTML = "");
 const formatCount = count => {
   if (count) {
     //count = 2.5
+    const newCount = Math.round(count * 10000) / 10000;
     const [int, dec] = count
       .toString()
       .split(".")
       .map(el => parseInt(el, 10));
 
-    if (!dec) return count;
+    if (!dec) return newCount;
 
     if (int === 0) {
       const fr = new Fraction(count);
       return `${fr.numerator}/${fr.denominator}`;
     } else {
-      const fr = new Fraction(count - int);
-      return `${int} ${fr.numerator}/${fr.denominator}`;
+      const fi = new Fraction(newCount - int);
+      return `${int} ${fi.numerator}/${fi.denominator}`;
     }
   }
   return "?";
