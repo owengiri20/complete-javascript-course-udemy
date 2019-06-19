@@ -8,7 +8,7 @@ export const clearInput = () => (elements.searchInput.value = "");
 
 // 0
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
   const newTitle = [];
   if (title.length > limit) {
     title.split(" ").reduce((acc, cur) => {
@@ -30,10 +30,12 @@ export const clearResults = () => {
 
 export const highlightedSelected = id => {
   const resultsArr = Array.from(document.querySelectorAll(".results__link"));
-  resultsArr.forEach(el => el.classList.remove("results__link--active"));
+  resultsArr.forEach(el => {
+    el.classList.remove("results__link--active");
+  });
 
   document
-    .querySelector(`a[href="#${id}"]`)
+    .querySelector(`.results__link[href*="${id}"]`)
     .classList.add("results__link--active");
 };
 
