@@ -141,6 +141,39 @@ elements.shopping.addEventListener("click", e => {
   }
 });
 
+/* 
+  LIKE CONTROLLER
+*/
+const controlLike = () => {
+  if (!state.likes) state.likes = new Likes();
+  const currentID = state.recipe.id;
+
+  // user has not yet liked current recipe
+  if (!state.likes.isLiked(currentID)) {
+    // Add like to state
+    const newLike = state.likes.addLike(
+      currentID,
+      state.recipe.title,
+      state.recipe.author,
+      state.recipe.img
+    );
+
+    // Toggle like button
+    // Add like to ui list
+    console.log(state.likes);
+
+    // user has liked current recipe
+  } else {
+    // Remove like from state
+    state.likes.delteLike(currentID);
+
+    // Toggle like button
+
+    // Remove like from ui list
+    console.log(state.likes);
+  }
+};
+
 // Handling recipe button clicks
 elements.recipe.addEventListener("click", e => {
   if (e.target.matches(".btn-decrease, .btn-decrease *")) {
@@ -154,7 +187,11 @@ elements.recipe.addEventListener("click", e => {
     state.recipe.updateServings("inc");
     recipeView.updateServingsIngredients(state.recipe);
   } else if (e.target.matches(".recipe__btn--add, .recipe__btn--add *")) {
+    // add ingredients to list
     controlList();
+  } else if (e.matches(".recipe__love, .recipe__love *")) {
+    // Likke controler
+    controlLike();
   }
 });
 
