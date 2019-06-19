@@ -7,6 +7,7 @@
 import Search from "./models/Search";
 import Recipe from "./models/Recipe";
 import List from "./models/List";
+import Likes from "./models/Likes";
 import * as searchView from "./views/searchView";
 import * as recipeView from "./views/recipeView";
 import * as listView from "./views/listView";
@@ -165,7 +166,7 @@ const controlLike = () => {
     // user has liked current recipe
   } else {
     // Remove like from state
-    state.likes.delteLike(currentID);
+    state.likes.deleteLike(currentID);
 
     // Toggle like button
 
@@ -189,7 +190,7 @@ elements.recipe.addEventListener("click", e => {
   } else if (e.target.matches(".recipe__btn--add, .recipe__btn--add *")) {
     // add ingredients to list
     controlList();
-  } else if (e.matches(".recipe__love, .recipe__love *")) {
+  } else if (e.target.matches(".recipe__love, .recipe__love *")) {
     // Likke controler
     controlLike();
   }
