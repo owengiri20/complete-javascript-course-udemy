@@ -23,8 +23,6 @@ import { elements, renderLoader, clearLoader } from "./views/base";
 */
 const state = {};
 
-window.state = state;
-
 /*SEARCH CONTROLLER */
 const controlSearch = async () => {
   // 1) Get query from view
@@ -76,7 +74,6 @@ elements.searchRes.addEventListener("click", e => {
 const controlRecipe = async () => {
   // Get the ID from url
   const id = window.location.hash.replace("#", "");
-  console.log(id);
   if (id) {
     // prepare UI for changes
     recipeView.clearRecipe();
@@ -179,7 +176,6 @@ const controlLike = () => {
 
     // Remove like from ui list
     likesView.deleteLike(currentID);
-    console.log(state.likes);
   }
   likesView.toggleLikeMenu(state.likes.getNumLikes());
 };
@@ -218,5 +214,3 @@ elements.recipe.addEventListener("click", e => {
     controlLike();
   }
 });
-
-window.l = new List();
